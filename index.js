@@ -25,7 +25,7 @@ async function tryLinkRequestGET(link) {
   } catch (error) {
     throw error;
   }
-}
+} // ^ tryLinkRequestGET()
 
 async function tryLinkRequestPOST(link, data) {
   try {
@@ -38,7 +38,7 @@ async function tryLinkRequestPOST(link, data) {
   } catch (error) {
     throw error;
   }
-}
+} // ^ tryLinkRequestPOST()
 
 async function tryAllRequests() {
   try {
@@ -61,9 +61,9 @@ async function tryAllRequests() {
   } catch (error) {
     console.error("Error:", error);
   }
-}
+} // ^ tryAllRequests()
 
-tryAllRequests();
+// tryAllRequests();
 
 setInterval(async function TwentyConnection() {
   try {
