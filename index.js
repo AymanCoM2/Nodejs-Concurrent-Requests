@@ -64,3 +64,36 @@ async function tryAllRequests() {
 }
 
 tryAllRequests();
+
+setInterval(async function TwentyConnection() {
+  try {
+    const requestPromises = [
+      tryLinkRequestGET(link1),
+      tryLinkRequestGET(link2),
+      tryLinkRequestGET(link3),
+      tryLinkRequestGET(link1),
+      tryLinkRequestGET(link2),
+      tryLinkRequestGET(link3),
+      tryLinkRequestGET(link1),
+      tryLinkRequestGET(link2),
+      tryLinkRequestGET(link3),
+      tryLinkRequestGET(link1),
+      tryLinkRequestGET(link2),
+      tryLinkRequestGET(link3),
+      tryLinkRequestGET(link1),
+      tryLinkRequestGET(link2),
+      tryLinkRequestGET(link3),
+      tryLinkRequestGET(link1),
+      tryLinkRequestGET(link2),
+      tryLinkRequestGET(link3),
+      // 18 Requests Are the Above === 3 * 6
+      tryLinkRequestPOST(link5, {}),
+      tryLinkRequestPOST(link6, {}),
+      // Now all 20 Requests
+    ];
+    const results = await Promise.all(requestPromises);
+    console.log("New Cycle");
+  } catch (error) {
+    console.error("Error:", error);
+  }
+}, 1000);

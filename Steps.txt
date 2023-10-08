@@ -7,3 +7,7 @@ This is a Script to Make Concurrent Requests To api Endpoints :
 Then Make the Script in index.js 
 
 3- node index.js > Running the script To text it  ; 
+
+
+Promise.all()  ->> Makes ConCurrent Reuqests To the Needed Endpoitns AT SAME TIME 
+    - You Can leverage this 
