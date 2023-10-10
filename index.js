@@ -14,18 +14,19 @@ let link4Data = {
 let link5 = "http://192.2.1.18:8000/InvoiceOrders/20230141";
 let link6 = "http://192.2.1.18:8000/InvoiceOrders/20230144";
 
-async function tryLinkRequestGET(link) {
-  try {
-    const response = await axios.get(link);
-    if (response.status >= 200 && response.status < 300) {
-      return response.data;
-    } else {
-      throw new Error(`GET Request failed with status ${response.status}`);
-    }
-  } catch (error) {
-    throw error;
-  }
-} // ^ tryLinkRequestGET()
+let getLinksArray = [link1, link2, link3];
+// async function tryLinkRequestGET(link) {
+//   try {
+//     const response = await axios.get(link);
+//     if (response.status >= 200 && response.status < 300) {
+//       return response.data;
+//     } else {
+//       throw new Error(`GET Request failed with status ${response.status}`);
+//     }
+//   } catch (error) {
+//     throw error;
+//   }
+// } // ^ tryLinkRequestGET()
 
 async function tryLinkRequestPOST(link, data) {
   try {
@@ -65,35 +66,17 @@ async function tryAllRequests() {
 
 // tryAllRequests();
 
-setInterval(async function TwentyConnection() {
+setInterval(async function tryLinkRequestGET() {
   try {
-    const requestPromises = [
-      tryLinkRequestGET(link1),
-      tryLinkRequestGET(link2),
-      tryLinkRequestGET(link3),
-      tryLinkRequestGET(link1),
-      tryLinkRequestGET(link2),
-      tryLinkRequestGET(link3),
-      tryLinkRequestGET(link1),
-      tryLinkRequestGET(link2),
-      tryLinkRequestGET(link3),
-      tryLinkRequestGET(link1),
-      tryLinkRequestGET(link2),
-      tryLinkRequestGET(link3),
-      tryLinkRequestGET(link1),
-      tryLinkRequestGET(link2),
-      tryLinkRequestGET(link3),
-      tryLinkRequestGET(link1),
-      tryLinkRequestGET(link2),
-      tryLinkRequestGET(link3),
-      // 18 Requests Are the Above === 3 * 6
-      tryLinkRequestPOST(link5, {}),
-      tryLinkRequestPOST(link6, {}),
-      // Now all 20 Requests
-    ];
-    const results = await Promise.all(requestPromises);
-    console.log("New Cycle");
+    let randomIndex = Math.floor(Math.random() * getLinksArray.length);
+    let randomLink = getLinksArray[randomIndex];
+    const response = await axios.get(randomLink);
+    if (response.status >= 200 && response.status < 300) {
+      console.log(response.data);
+    } else {
+      throw new Error(`GET Request failed with status ${response.status}`);
+    }
   } catch (error) {
-    console.error("Error:", error);
+    throw error;
   }
 }, 1000);
